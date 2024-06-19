@@ -1,0 +1,137 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site3.Master" AutoEventWireup="true" CodeBehind="adminbookissuingpage.aspx.cs" Inherits="WebApplication2.adminbookissuing_page" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".table").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
+        });
+    </script>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                         <div class="row">
+                            <div class="col">
+                                <center>
+                                   <h3>Book Isuuing</h3>
+                                </center>
+                            </div>
+                         </div>
+                        <div class="row">
+                            <div class="col">
+                                <center>
+                                    <img width="100px" src="images/books.png" />    
+                                </center>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col"> 
+                               <hr>                           
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                               <label>Member ID</label>                
+                               <div class="form-group">
+                                   <asp:TextBox CssClass="form-control" ID="TextBox1" runat="server" placeholder="Member ID"></asp:TextBox>                         
+                               </div> 
+                            </div>
+                            <div class="col-md-6">
+                                <label>Book ID</label>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <asp:TextBox CssClass="form-control" ID="TextBox2" runat="server" placeholder="Book ID "></asp:TextBox>
+                                        <asp:Button class="btn btn-primary" ID="Button4" runat="server" Text="Go" OnClick="Button4_Click" />
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                               <label>Member Name</label>                
+                               <div class="form-group">
+                                   <asp:TextBox CssClass="form-control" ID="TextBox4" runat="server" placeholder="Member Name"></asp:TextBox>                         
+                               </div> 
+                            </div>
+                            <div class="col-md-6">
+                                <label>Book Name</label>
+                                <div class="form-group">
+                                  <asp:TextBox CssClass="form-control" ID="TextBox5" runat="server" placeholder="Book Name "></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                               <label>Start Date</label>                
+                               <div class="form-group">
+                                   <asp:TextBox CssClass="form-control" ID="TextBox6" runat="server" placeholder="
+                                       Start Date" TextMode="Date"></asp:TextBox>                         
+                               </div> 
+                            </div>
+                            <div class="col-md-6">
+                                <label>End Date</label>
+                                <div class="form-group">
+                                  <asp:TextBox CssClass="form-control" ID="TextBox7" runat="server" placeholder="End Date " TextMode="Date"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                
+                                    <asp:Button class="btn btn-lg btn-block btn-success" ID="Button1" runat="server" Text="Issue" OnClick="Button1_Click" />   
+                                
+                            </div>
+                                                    
+                            <div class="col-md-6">                  
+                               
+                                  <asp:Button class="btn btn-lg btn-block btn-primary" ID="Button2" runat="server" Text="Return" OnClick="Button2_Click" />                          
+                              
+                            </div>
+                            
+                       </div>
+                        </div>
+                    </div>
+                <a href="homepage.aspx">Back to Home</a><br><br>
+            </div>
+              
+            <div class="col-md-7">
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <div class="row">
+                            <div class="col">
+                                <center>
+                                    <h4>Issued Book  List</h4>  
+                                </center>
+                            </div>
+                         </div>
+                        <div class="row">
+                            <div class="col"> 
+                               <hr>                           
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                                <asp:GridView class= "table table-striped table-bordered" ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="memb_ID" DataSourceID="SqlDataSource1" OnRowDataBound="GridView1_RowDataBound">
+                                    <Columns>
+                                        <asp:BoundField DataField="memb_ID" HeaderText="memb_ID" ReadOnly="True" SortExpression="memb_ID" />
+                                        <asp:BoundField DataField="memb_name" HeaderText="memb_name" SortExpression="memb_name" />
+                                        <asp:BoundField DataField="book_ID" HeaderText="book_ID" SortExpression="book_ID" />
+                                        <asp:BoundField DataField="book_name" HeaderText="book_name" SortExpression="book_name" />
+                                        <asp:BoundField DataField="issue_date" HeaderText="issue_date" SortExpression="issue_date" />
+                                        <asp:BoundField DataField="due_date" HeaderText="due_date" SortExpression="due_date" />
+                                    </Columns>
+                                </asp:GridView>                           
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:onlineLibraryDBConnectionString %>" SelectCommand="SELECT * FROM [book_issue_tb]"></asp:SqlDataSource>
+                            <div class="col"> 
+                            </div>
+                        </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</asp:Content>
